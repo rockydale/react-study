@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hello react</title>
+</head>
+<body>
+    <!-- 准备好一个容器 -->
+    <div id="test">
+
+    </div>
+    <!-- 核心库 -->
+    <script src="../lib/react.development.js"></script>
+    <!-- 引入react-dom 支持react操作dom -->
+    <script src="../lib/react-dom.development.js"></script>
+    <script src="../lib/babel.min.js"></script>
+
+    <!-- 通过babel转义的jsx 一定要写 -->
+    <script type="text/babel">
+        //1. 虚拟dom
+        // 创建带有id属性或者其他属性的可以填上
+        // const VDom = <h1 id="title">hello,react</h1>; // 此处不需要引号 因为不是字符串
+        const VDom = (
+            <h1 id="title">
+                <span>hello,react</span>
+            </h1>
+        ); // 此处不需要引号 因为不是字符串
+        //2. 渲染虚拟dom到页面
+        // react没有提供操作dom的选择器
+        // 语法 （Dom节点，容器)
+        ReactDOM.render(VDom, document.getElementById('test'));
+        //3. 
+    </script>
+</body>
+</html>

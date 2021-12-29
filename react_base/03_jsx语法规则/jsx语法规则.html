@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hello react</title>
+    <style>
+        .title {
+            background-color: tomato;
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 准备好一个容器 -->
+    <div id="test">
+    </div>
+    <!-- 核心库 -->
+    <script src="../lib/react.development.js"></script>
+    <!-- 引入react-dom 支持react操作dom -->
+    <script src="../lib/react-dom.development.js"></script>
+    <script src="../lib/babel.min.js"></script>
+
+    <!-- 通过babel转义的jsx 一定要写 -->
+    <script type="text/babel">
+        //1. 创建虚拟dom
+        const myId = 'cOuRsE';
+        const myData = 'helLo,rEaCt';
+        const VDom = (
+            <div>
+                <h2 className="title" id={myId.toLocaleLowerCase()}>
+                    <span style={{color: 'red', fontSize: '20px'}}>{myData.toLocaleLowerCase()}</span>
+                </h2>
+                <h2 className="title" id={myId.toLocaleUpperCase()}>
+                    <span style={{color: 'red', fontSize: '20px'}}>{myData.toLocaleUpperCase()}</span>
+                </h2>
+                <input type="text"></input>
+            </div>
+        )
+        ReactDOM.render(VDom, document.getElementById('test'));
+    </script>
+</body>
+</html>

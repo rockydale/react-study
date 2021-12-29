@@ -1,0 +1,36 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-11-18 18:17:43
+ * @LastEditTime: 2021-11-18 18:25:09
+ * @LastEditors: Please set LastEditors
+ * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ * @FilePath: \run\project\react\复习\2_原生事件绑定的几种方式.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn1">按钮1</button>
+    <button id="btn2">按钮2</button>
+    <button onclick="demo()">按钮3</button>
+    <script type="text/javascript">
+        const btn1 = document.getElementById('btn1');
+        btn1.addEventListener('click', function () {
+            alert('按钮1被点击了');
+        });
+        const btn2 = document.getElementById('btn2');
+        // 竟然可以直接这么使用？？
+        btn2.onclick = () => {
+            alert('按钮2被点击了hhh')
+        }
+        const demo = function demo () {
+            alert('按钮3被点击了');
+        }
+    </script>
+</body>
+</html>

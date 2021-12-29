@@ -1,0 +1,56 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-11-18 18:03:37
+ * @LastEditTime: 2021-11-18 18:30:52
+ * @LastEditors: Please set LastEditors
+ * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ * @FilePath: \run\project\react\06_组件实例的三大特性\state.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hello react</title>
+</head>
+<body>
+    <!-- 准备好一个容器 -->
+    <div id="test">
+
+    </div>
+    <!-- 核心库 -->
+    <script src="../lib/react.development.js"></script>
+    <!-- 引入react-dom 支持react操作dom -->
+    <script src="../lib/react-dom.development.js"></script>
+    <script src="../lib/babel.min.js"></script>
+
+    <!-- 通过babel转义的jsx 一定要写 -->
+    <script type="text/babel">
+        //1. 创建组件
+        class Weather extends React.Component {
+            constructor(props) {
+                super(props);
+                // 初始化状态
+                this.state = {isHot: false, isWind: false};
+            }
+            render() {
+                // 读取状态
+                const {isHot} = this.state;
+                return <h1 onclick="changeState()">今天天气很{isHot ? '炎热': '清凉'}</h1>;
+            }
+        }
+        ReactDOM.render(<Weather/>, document.getElementById('test'));
+        // const title = document.getElementById('title');
+        // title.addEventListener('click', () => {
+        //     console.log('标题被点击了')
+        // })
+        // title.onclick = () => {
+        //     console.log('标题被点击了')
+        // };
+        const changeState = function () {
+            console.log('标题被点击了')
+        }
+    </script>
+</body>
+</html>

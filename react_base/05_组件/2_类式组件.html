@@ -1,0 +1,55 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-11-18 16:35:36
+ * @LastEditTime: 2021-11-18 17:51:21
+ * @LastEditors: Please set LastEditors
+ * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ * @FilePath: \run\project\react\05_组件\2_类式组件.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hello react</title>
+</head>
+<body>
+    <!-- 准备好一个容器 -->
+    <div id="MyComponent"></div>
+    <!-- 核心库 -->
+    <script src="../lib/react.development.js"></script>
+    <!-- 引入react-dom 支持react操作dom -->
+    <script src="../lib/react-dom.development.js"></script>
+    <script src="../lib/babel.min.js"></script>
+
+    <!-- 通过babel转义的jsx 一定要写 -->
+    <script type="text/babel">
+    // 类式组件的声明
+    class MyComponent extends React.Component {
+        render() {
+            // render放在MyComponent的原型对象上，供实例使用
+            // render中的this是谁？Mycomponet的实例对象
+            // 可是没有new 为什么会有实例呢
+            console.log(this);
+            return (
+                <div>
+                    <h2>render里面写新的内容。。</h2>
+                    <span>我是用类定义的组件，适用于复杂组件的定义</span>
+                </div>
+            );
+        }
+    }
+    // 渲染组件到页面
+    // 这里的render跟类里面的render只是重名而已
+    // 是因为这一行
+    ReactDOM.render(<MyComponent/>, document.getElementById('MyComponent'));
+    /***
+     * 执行了ReactDOM.render(<MyComponent/>)。。。之后 发生了什么
+     * 1. React解析组价标签，找到了MyComponent组件
+     * 2. 发现组件是使用类定义的，随后new出该类的实例，并通过该实例调用到原型上的render方法
+     * 3. 将render返回的虚拟DOM转为真实DOM，随后呈现在页面上
+     */
+    </script>
+</body>
+</html>

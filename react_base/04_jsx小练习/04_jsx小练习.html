@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hello react</title>
+</head>
+<body>
+    <!-- 准备好一个容器 -->
+    <div id="test">
+
+    </div>
+    <!-- 核心库 -->
+    <script src="../lib/react.development.js"></script>
+    <!-- 引入react-dom 支持react操作dom -->
+    <script src="../lib/react-dom.development.js"></script>
+    <script src="../lib/babel.min.js"></script>
+
+    <!-- 通过babel转义的jsx 一定要写 -->
+    <script type="text/babel">
+        //1. 虚拟dom
+        const Data = {
+            name: '课程小练习：jsx',
+            list: ['好好学习', '天天向上', '吃饭吃多多']
+        }
+        const VDom = (
+            <div>
+                <h1>{Data.name}</h1>
+                <ul>
+                    {
+                        Data.list.map((res, idx) => {
+                            return <li key={idx}> {res}</li>
+                        })
+                    }
+                </ul>
+            </div>
+        ); 
+        //2.
+        ReactDOM.render(VDom, document.getElementById('test'));
+    </script>
+</body>
+</html>

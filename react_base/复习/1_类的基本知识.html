@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1_类的基本知识</title>
+</head>
+<body>
+    <script type="text/javascript">
+    class Person {
+        constructor(name, age) {
+            // 构造器的this指向实例对象
+            this.name = name;
+            this.age = age;
+        }
+        // 一般方法
+        speak() {
+            // speak在哪里——在类的原型对象上，供是给实例用的
+            // 通过person实例调用，this是实例对象
+            return `my name is ${this.name}, age is ${this.age}`;
+        }
+    }
+    // 继承
+    class Student extends Person {
+        // 默认使用super继承构造器??
+        constructor(name, age, grade) {
+            super(name, age);
+            this.grade = grade;
+        }
+
+        speak() {
+            console.log(`my name is ${this.name}, age is ${this.age},我上${this.grade}`)
+        }
+
+        study() {
+            console.log('我好好学习');
+        }
+    }
+    const s1 = new Student('小王', 15, '高一');
+    console.log(s1);
+    // 这里层层向上找 s1 -> Student -> Person
+    console.log(s1.speak());
+    </script>
+</body>
+</html>
