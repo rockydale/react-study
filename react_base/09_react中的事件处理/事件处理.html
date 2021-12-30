@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../lib/react.development.js"></script>
+    <script src="../lib/react-dom.development.js"></script>
+    <script src="../lib/babel.min.js"></script>
+</head>
+<body>
+    <div id="test"></div>
+    <script type="text/babel">
+        class Demo extends React.Component {
+            myRef1 = React.createRef();
+            myRef2 = React.createRef();
+
+            showData1 = () => {
+                console.log(this.myRef1.current.value);
+            }
+            showData2 = (event) => {
+                console.log(event,event.target,event.target.value);
+                // console.log(this.myRef2.current.value);
+            }
+
+            render() {
+                return (
+                    <div>
+                        <input ref={this.myRef1} placeholder="点击按钮提示数据" type="text"/>&nbsp;
+                        <button onClick={this.showData1}>点我显示左侧的数据</button>&nbsp;
+                        <input onBlur={this.showData2} placeholder="失去焦点显示数据" type="text"></input>
+                    </div>
+                )
+            }
+        }
+        ReactDOM.render(<Demo/>, document.getElementById('test'));
+    </script>
+</body>
+</html>

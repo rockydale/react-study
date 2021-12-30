@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../lib/react.development.js"></script>
+    <script src="../lib/react-dom.development.js"></script>
+    <script src="../lib/babel.min.js"></script>
+</head>
+<body>
+    <div id="test"></div>
+    <script type="text/babel">
+        class Login extends React.Component {
+            // 原则：状态必须先进行初始化
+            state = {
+                username: '',
+                password: ''
+            }
+            // 保存表单数据到状态中
+            saveFormData = (dataType) => {
+                // react调用的回调 并且传入了event
+                return (event) => {
+                    // dataType:xxx 跟 'dataType':xxx 这种是一样的效果
+                    this.setState({[dataType]: event.target.value});
+                }
+            }
+            // 表单提交的回调
+            handleSubmit = (event) => {
+                event.preventDefault(); // 阻止默认事件
+                const {username, password} = this.state;
+                alert(`${username}, ${password}`)
+            }
+
+            render() {
+                return (
+                    <form action="https://www.bilibili.com/video/BV1wy4y1D7JT?p=33"
+                        onSubmit={this.handleSubmit}>
+                        用户名：<input onChange={this.saveFormData('username')} type="text" name="username"/>
+                        密码：<input onChange={this.saveFormData('password')} type="password" name="password"/>
+                        <button>登录</button>
+                    </form>
+                )
+            }
+        }
+        ReactDOM.render(<Login/>, document.getElementById('test'));
+    </script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../lib/react.development.js"></script>
+    <script src="../lib/react-dom.development.js"></script>
+    <script src="../lib/babel.min.js"></script>
+    <!-- 引入prop-types用于对标签属性进行限制 -->
+    <script src="../lib/prop-types.js"></script>
+</head>
+<body>
+    <div id="test"></div>
+    <div id="test1"></div>
+    <div id="test2"></div>
+    <script type="text/babel">
+        // 创建组件  
+        function Person (props){
+            const {name, age, sex} = props;
+            return (
+                <ul>
+                    <li>姓名：{name}</li>
+                    <li>性别：{age}</li>
+                    <li>年龄：{sex}</li>    
+                </ul>
+            )
+        }
+
+        Person.propTypes = {
+            // 为了避免跟基本类型冲突，这里基本类型的首字母都是小写的
+            name: PropTypes.string.isRequired,
+            age: PropTypes.number,
+            sex: PropTypes.string
+        }
+
+        // 设置默认值
+        Person.defaultProps = {
+            sex: '男',
+            age: 18
+        }
+        // 渲染组件到页面
+        ReactDOM.render(<Person name="tom" sex="男" age={18}/>, document.getElementById('test'));
+    </script>
+</body>
+</html>

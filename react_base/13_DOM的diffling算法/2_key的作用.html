@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../lib/react.development.js"></script>
+    <script src="../lib/react-dom.development.js"></script>
+    <script src="../lib/babel.min.js"></script>
+</head>
+<body>
+    <div id="test"></div>
+    <script type="text/babel">
+        /*
+            慢动作回放——使用index索引值做key
+            数据:
+                {id: 1,name: '小张',age: 18},
+                {id: 2,name: '小赵',age: 19}
+            初始的虚拟DOM
+                <li key=0>小张---18</li>
+                <li key=1>小赵---19</li>
+            更新后的数据
+                {id: 3,name: '小王',age: 20},
+                {id: 1,name: '小张',age: 18},
+                {id: 2,name: '小赵',age: 19}
+            更新后的虚拟DOM
+                <li key=0>小王---20</li>
+                <li key=1>小张---18</li>
+                <li key=2>小赵---19</li>
+            比对
+            ****************************
+            慢动作回放——使用id(唯一标识)做key
+            数据:
+                {id: 1,name: '小张',age: 18},
+                {id: 2,name: '小赵',age: 19}
+            初始的虚拟DOM
+                <li key=1>小张---18</li>
+                <li key=2>小赵---19</li>
+            更新后的数据
+                {id: 3,name: '小王',age: 20},
+                {id: 1,name: '小张',age: 18},
+                {id: 2,name: '小赵',age: 19}
+            更新后的虚拟DOM
+                <li key=3>小王---20</li>
+                <li key=1>小张---18</li>
+                <li key=2>小赵---19</li>
+            比对
+        */
+
+        class Person extends React.Component {
+            state = {
+                persons: [
+                    {
+                        id: 1,
+                        name: '小张',
+                        age: 18
+                    },
+                    {
+                        id: 2,
+                        name: '小赵',
+                        age: 19
+                    }
+                ]
+            }
+            
+            add = () => {
+                const {persons} = this.state;
+                const p = {id: persons.length+ 1, name: '小王', age: 20};
+                this.setState({persons: [p,...persons]})
+            }
+
+            render () {
+                return (
+                    <div>
+                        <h2>展示人员信息</h2>
+                        <button onClick={this.add}>添加一个小王吧</button>
+                        <h3>使用index(索引值)作为key</h3>
+                        <ul>
+                            {
+                                this.state.persons.map((personsObj, index) => {
+                                    return <li key={index}>{personsObj.name}---{personsObj.age} <input type="text"/> </li>
+                                })
+                            }    
+                        </ul>
+                        <h3>使用id(数据的唯一标识)作为key</h3>
+                        <ul>
+                            {
+                                this.state.persons.map((personsObj, index) => {
+                                    return <li key={personsObj.id}>{personsObj.name}---{personsObj.age} <input type="text" /> </li>
+                                })
+                            }    
+                        </ul>
+                    </div>
+                )
+            }
+        }
+        ReactDOM.render(<Person />, document.getElementById('test'));
+    </script>
+</body>
+</html>

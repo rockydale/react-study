@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../lib/react.development.js"></script>
+    <script src="../lib/react-dom.development.js"></script>
+    <script src="../lib/babel.min.js"></script>
+</head>
+<body>
+    <div id="test"></div>
+    <script type="text/babel">
+        class Demo extends React.Component {
+            getInfoLeft = () => {
+                // 这里从实例自身取就可以拿到input1了
+                const {input1} = this;
+                console.log(input1.value);
+            }
+
+            getInfoRight = () => {
+                const {input2} = this;
+                console.log(input2.value);
+            }
+
+            render() {
+                return (
+                    <div>
+                        <input ref={c => this.input1 = c} placeholder="点击按钮提示数据" type="text"/>
+                        <button ref="button100" onClick={this.getInfoLeft}>点我显示左侧的数据</button>
+                        <input ref={c => {this.input2 = c;}} onBlur={this.getInfoRight} placeholder="失去焦点提示数据" type="text"/>    
+                    </div>
+                )
+            }
+        }
+        ReactDOM.render(<Demo/>, document.getElementById('test'));
+    </script>
+</body>
+</html>

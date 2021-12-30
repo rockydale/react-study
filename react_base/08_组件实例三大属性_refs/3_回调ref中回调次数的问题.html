@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../lib/react.development.js"></script>
+    <script src="../lib/react-dom.development.js"></script>
+    <script src="../lib/babel.min.js"></script>
+</head>
+<body>
+    <div id="test"></div>
+    <script type="text/babel">
+        class Demo extends React.Component {
+            state = {isHot: true};
+            showInfo = () => {
+                const {input1} = this;
+                const {isHot} = this.state;
+                this.setState({isHot: !isHot});
+                console.log(input1.value);
+            }
+            saveInput = (c) => {
+                this.input1 = c;
+                console.log('@', c);
+            }
+            render() {
+                const {isHot} = this.state;
+                return (
+                    <div>
+                        { /* <input ref={(c) => {this.input1 = c;console.log('@', currentNode)}} type="text"/> */}
+                        <input ref={this.saveInput} type="text"/>
+                        <button onClick={this.showInfo}>点我输出输入的数据并改变状态</button>
+                        <span>今天天气很{isHot ? '炎热' : '凉爽'}</span>
+                    </div>
+                )
+            }
+        }
+        ReactDOM.render(<Demo/>, document.getElementById('test'));
+    </script>
+</body>
+</html>
